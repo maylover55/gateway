@@ -1,0 +1,74 @@
+server:
+  port: 8088
+
+---
+
+spring:
+  profiles: default
+  cloud:
+    gateway:
+      routes:
+        - id: TicketReservation
+          uri: http://localhost:8081
+          predicates:
+            - Path=/ticketReservations/** 
+        - id: ParkingLot
+          uri: http://localhost:8082
+          predicates:
+            - Path=/parkingLots/** 
+        - id: TicketDelivery
+          uri: http://localhost:8083
+          predicates:
+            - Path=/ticketDeliveries/**/deliveryCancelations/** 
+        - id: reservationStatus
+          uri: http://localhost:8084
+          predicates:
+            - Path= /reservationStatuses/**
+      globalcors:
+        corsConfigurations:
+          '[/**]':
+            allowedOrigins:
+              - "*"
+            allowedMethods:
+              - "*"
+            allowedHeaders:
+              - "*"
+            allowCredentials: true
+
+
+---
+
+spring:
+  profiles: docker
+  cloud:
+    gateway:
+      routes:
+        - id: TicketReservation
+          uri: http://TicketReservation:8080
+          predicates:
+            - Path=/ticketReservations/** 
+        - id: ParkingLot
+          uri: http://ParkingLot:8080
+          predicates:
+            - Path=/parkingLots/** 
+        - id: TicketDelivery
+          uri: http://TicketDelivery:8080
+          predicates:
+            - Path=/ticketDeliveries/**/deliveryCancelations/** 
+        - id: reservationStatus
+          uri: http://reservationStatus:8080
+          predicates:
+            - Path= /reservationStatuses/**
+      globalcors:
+        corsConfigurations:
+          '[/**]':
+            allowedOrigins:
+              - "*"
+            allowedMethods:
+              - "*"
+            allowedHeaders:
+              - "*"
+            allowCredentials: true
+
+server:
+  port: 8080
