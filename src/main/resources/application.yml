@@ -44,19 +44,19 @@ spring:
     gateway:
       routes:
         - id: TicketReservation
-          uri: http://TicketReservation:8080
+          uri: http://ticketreservation:8080
           predicates:
             - Path=/ticketReservations/** 
         - id: ParkingLot
-          uri: http://ParkingLot:8080
+          uri: http://parkinglot:8080
           predicates:
             - Path=/parkingLots/** 
         - id: TicketDelivery
-          uri: http://TicketDelivery:8080
+          uri: http://ticketdelivery:8080
           predicates:
             - Path=/ticketDeliveries/**
         - id: reservationStatus
-          uri: http://reservationStatus:8080
+          uri: http://reservationstatus:8080
           predicates:
             - Path= /reservationStatuses/**
       globalcors:
