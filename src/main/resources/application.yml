@@ -19,7 +19,7 @@ spring:
         - id: TicketDelivery
           uri: http://localhost:8083
           predicates:
-            - Path=/ticketDeliveries/** 
+            - Path=/ticketDeliveries/**, /deliveryCancelations/**
         - id: reservationStatus
           uri: http://localhost:8084
           predicates:
